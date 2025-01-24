@@ -13,11 +13,17 @@ def byte_pair_encode(tokens, depth = 0):
 
   while True:
 
-    # setting depth to 0 would mean compression occurs until no more pairs occur more than once
+    # setting depth to 0 would mean compression occurs until no more pairs occur more than once. this can be used as a hyperparameter to influence the vocabulary size
     if depth_counter == depth:
       break
     
     depth_counter += 1
+
+    # a better way to choose the vocabulary size is to do the following. this will need an additional method parameter vocab_size. i am skipping the implementation for now since it's relatively intuitive and simple
+    """
+    if len(set_of_used_tokens) > vocab_size:
+      return [...]
+    """
 
     # first scan through the list of tokens to get pair frequencies
     pair_frequency_dict = dict()
