@@ -136,11 +136,11 @@ print(tokens == original_tokens)
 from prettytable import PrettyTable
 table = PrettyTable()
 
-table.field_names = ["Depth", "Token Length", "Vocabulary Size"]
-table.add_row(["Original", len(tokens), len(set(tokens))])
+table.field_names = ["Depth", "Token Length", "Compression Ratio", "Vocabulary Size"]
+table.add_row(["Original", len(tokens), len(tokens) / len(tokens), len(set(tokens))])
 
 for i in range(1, 10):
   encoded_tokens, _, depth_counter, vocab_size = byte_pair_encode(tokens, depth = i)
-  table.add_row([depth_counter, len(encoded_tokens), vocab_size])
+  table.add_row([depth_counter, len(encoded_tokens), f"{len(tokens) / len(encoded_tokens):.2f}", vocab_size])
 
 print(table)
